@@ -15,7 +15,7 @@ pipeline {
             steps {
                 sh 'docker stop my_hello_container || true'
                 sh 'docker rm my_hello_container || true'
-                sh 'docker run -d -p 80:80 --name my_hello_container hello-app:latest'
+                sh 'docker run -d -p 80:5000 --name my_hello_container hello-app:latest'
             }
         }
 
