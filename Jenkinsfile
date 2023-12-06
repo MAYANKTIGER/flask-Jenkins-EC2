@@ -11,11 +11,13 @@ pipeline {
                 sh 'docker build -t hello-app:latest .'
             }
         }
-        stage('Run Image') {
+        stage('Run Image') {   
             steps {
-                sh 'docker run -d -p 5000:80 --name my_hello_container hello-app:latest'
+                def containerName = "my_hello_container_${BUILD_ID}"
+                sh "sudo docker run -d -p 5000:80 --name ${containerName} hello-app:latest"
             }
         }
+
         stage('Testing') {
             steps {
                 echo 'Testing..'
